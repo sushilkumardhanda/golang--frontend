@@ -1,0 +1,128 @@
+{{define "searchBar"}}
+<section class="small-searchBar">
+  <div class="sm:hidden">
+    <div class="flex text-[12px] justify-evenly gap-4 mt-4 w-full">
+      <img
+        src="../assets/images/SearchFilter.svg"
+        class="h-[15%] w-[15%] self-center"
+        alt="SearchFilter"
+        onclick="ToggleSearchFilter()"
+      />
+      <div
+        id="search-filter"
+        class="border bg-white shadow-lg rounded-lg absolute top-[8rem] left-[1rem] hidden"
+      >
+        <div class="bg-[#f7f9fc] p-4">
+          <div class="py-2">Search Filters</div>
+          <div class="flex gap-4">
+            <div
+              class="border rounded px-1 bg-white filter-buttons"
+              onclick="filterButton(event)"
+            >
+              Element
+            </div>
+            <div
+              class="border rounded px-1 bg-white filter-buttons"
+              onclick="filterButton(event)"
+            >
+              Field Name
+            </div>
+            <div
+              class="border rounded px-1 bg-white filter-buttons"
+              onclick="filterButton(event)"
+            >
+              Alias
+            </div>
+            <div
+              class="border rounded px-1 bg-white filter-buttons"
+              onclick="filterButton(event)"
+            >
+              Field Type
+            </div>
+          </div>
+        </div>
+        <div class="p-2 justify-end flex gap-4">
+          <button
+            class="p-1 border flex rounded"
+            onclick="ToggleSearchFilter()"
+          >
+            Cancel
+          </button>
+          <button
+            class="p-1 bg-[#4A7EE7] flex rounded text-white"
+            onclick="ApplyFilter()"
+          >
+            Apply
+          </button>
+        </div>
+      </div>
+      <div class="flex border w-full rounded ml-2 shadow-lg">
+        <img
+          src="../assets/images/search.svg"
+          class="w-fit self-center mx-2"
+          alt="Search"
+        />
+        <input
+          type="text"
+          placeholder="Search..."
+          class="py-2 w-full focus:outline-none"
+        />
+      </div>
+      <div class="w-full">
+        <button class="p-2 bg-[#4A7EE7] flex rounded text-white">
+          <div>Upload All</div>
+          <img
+            src="../assets/images/UploadButton.svg"
+            class="w-fit self-center mx-2"
+            alt="UploadButton"
+          />
+        </button>
+      </div>
+    </div>
+    <div id="filter" class="flex gap-4 mt-2 hidden">
+      <div class="text-[#4A7EE7]" onclick="ClearFilter()">Clear All</div>
+      <div>Filter:</div>
+      <div id="filter-div"></div>
+    </div>
+  </div>
+</section>
+<section class="large-searchBar">
+  <div class="flex justify-between mt-8 w-full hidden sm:flex">
+    <div class="flex w-3/4 md:w-2/3 lg:w-1/2">
+      <div>
+        <select
+          name="search-field"
+          class="bg-[#4A7EE7] rounded text-white px-3 py-2"
+        >
+          <option class="bg-white text-gray-950" value="All">All</option>
+          <option class="bg-white text-gray-950" value="Elements">
+            Element
+          </option>
+          <option class="bg-white text-gray-950" value="FieldName">
+            Field Name
+          </option>
+          <option class="bg-white text-gray-950" value="Alias">Alias</option>
+          <option class="bg-white text-gray-950" value="Error Code">
+            Field Type
+          </option>
+        </select>
+      </div>
+      <div class="flex border w-full rounded ml-2 shadow-lg">
+        <img
+          src="../assets/images/search.svg"
+          class="w-fit self-center mx-2"
+          alt="Search"
+        />
+        <input
+          type="text"
+          placeholder="Search..."
+          class="py-2 w-full focus:outline-none"
+        />
+      </div>
+    </div>
+    <div>
+      <button class="p-2 bg-[#4A7EE7] rounded text-white">Upload All</button>
+    </div>
+  </div>
+</section>
+{{end}}

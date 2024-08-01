@@ -1,0 +1,199 @@
+{{define "welcome"}}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lexium | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="flex flex-col gap-2 mx-16">
+      <div class="text-center mt-16 mb-16">
+        <h1 class="text-2xl md:text-5xl font-extrabold">
+          Welcome To <span class="text-[#487DE7]">Lexium</span>
+        </h1>
+        <div class="flex justify-between">
+          <img
+            src="../assets/images/welcome-folder.png"
+            class="self-end w-1/12 h-[8%] md:w-fit md:h-fit"
+            alt="folder image"
+          />
+          <p class="w-[25rem] text-xs md:text-[16px] mx-auto">
+            Welcome to the world of automation! Let
+            <span class="text-[#487DE7]">LEXIUM</span> take the reins and handle
+            your rules with precision.
+          </p>
+          <img
+            src="../assets/images/welcome-documents.png"
+            class="self-end w-1/12 h-[8%] md:w-fit md:h-fit"
+            alt="documents image"
+          />
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row gap-6">
+        <div class="flex md:flex-col flex-row gap-4">
+          <div
+            class="tablinks group border-2 shadow-xl rounded p-4 hover:shadow-lg"
+            onclick="openTab(event,'ITR-return')"
+          >
+            <div class="flex justify-between text-[10px] md:text-[16px]">
+              <h2 class="font-semibold">Income Tax Return</h2>
+              <img src="../assets/images/Arrow.svg" class="group-hover:flex" />
+            </div>
+            <p class="text-[8px] md:text-[13px] text-[#1C1C1C]">
+              Select Income tax report to get perfect elements, schedule and
+              rules as per ITR.
+            </p>
+          </div>
+          <div
+            class="tablinks group border cursor-pointer rounded p-4 hover:shadow-lg"
+            onclick="openTab(event,'ITR-schema')"
+          >
+            <div class="flex justify-between text-[10px] md:text-[16px]">
+              <h2 class="font-semibold">Schema</h2>
+              <img
+                src="../assets/images/Arrow.svg"
+                class="hidden group-hover:flex"
+              />
+            </div>
+            <p class="text-[8px] md:text-[13px] text-[#1C1C1C]">
+              Select the schema version for accessing services w.r.t the ITR
+              selected.
+            </p>
+          </div>
+          <div
+            class="tablinks group border cursor-pointer p-4 hover:shadow-lg"
+            onclick="openTab(event,'ITR-service')"
+          >
+            <div class="flex justify-between text-[10px] md:text-[16px]">
+              <h2 class="font-semibold">Services</h2>
+              <img
+                src="../assets/images/Arrow.svg"
+                class="hidden group-hover:flex"
+              />
+            </div>
+            <p class="text-[8px] md:text-[13px] text-[#1C1C1C]">
+              Select the required service to get the details w.r.t the selected
+              ITR.
+            </p>
+          </div>
+        </div>
+        <div class="w-full md:w-2/3">
+          <div id="ITR-return" class="tabcontent p-4 bg-[#888FAA1A] h-full">
+            <h2 class="font-semibold text-[10px] md:text-[16px]">
+              Select Income Tax Return
+            </h2>
+            <p class="text-[8px] md:text-[13px] text-[#1C1C1C] my-4">
+              Select Income tax report to get perfect elements, schedule and
+              rules as per ITR.
+            </p>
+            <div
+              class="grid grid-cols-3 gap-x-6 md:gap-x-8 lg:gap-x-16 xl:gap-x-24 2xl:gap-x-32 gap-y-6"
+            >
+              <div
+                class="button-itr border rounded p-2 bg-white text-center text-[10px] md:text-[16px]"
+                onclick="itrButton(event)"
+              >
+                ITR 1
+              </div>
+              <div
+                class="button-itr border rounded p-2 bg-white text-center text-[10px] md:text-[16px]"
+                onclick="itrButton(event)"
+              >
+                ITR 2
+              </div>
+              <div
+                class="button-itr border rounded p-2 bg-white text-center text-[10px] md:text-[16px]"
+                onclick="itrButton(event)"
+              >
+                ITR 3
+              </div>
+              <div
+                class="button-itr border rounded p-2 bg-white text-center text-[10px] md:text-[16px]"
+                onclick="itrButton(event)"
+              >
+                ITR 4
+              </div>
+              <div
+                class="button-itr border rounded p-2 bg-white text-center text-[10px] md:text-[16px]"
+                onclick="itrButton(event)"
+              >
+                ITR 5
+              </div>
+              <div
+                class="button-itr border rounded p-2 bg-white text-center text-[10px] md:text-[16px]"
+                onclick="itrButton(event)"
+              >
+                ITR 6
+              </div>
+              <div
+                class="button-itr border rounded p-2 bg-white text-center text-[10px] md:text-[16px]"
+                onclick="itrButton(event)"
+              >
+                ITR 7
+              </div>
+            </div>
+          </div>
+          <div
+            id="ITR-schema"
+            class="tabcontent hidden p-4 bg-[#888FAA1A] h-full"
+          >
+            <h2 class="font-semibold text-[10px] md:text-[16px]">
+              Select Schema
+            </h2>
+            <p class="text-[8px] md:text-[13px] text-[#1C1C1C] my-4">
+              Select Income tax report to get perfect elements, schedule and
+              rules as per ITR.
+            </p>
+            <div
+              class="grid grid-cols-4 gap-x-4 md:gap-x-6 lg:gap-x-8 xl:gap-x-16 gap-y-6"
+              id="schema-container"
+            ></div>
+          </div>
+          <div
+            id="ITR-service"
+            class="tabcontent hidden p-4 bg-[#888FAA1A] h-full"
+          >
+            <h2 class="font-semibold text-[10px] md:text-[16px]">
+              Select Services
+            </h2>
+            <p class="text-[8px] md:text-[13px] text-[#1C1C1C] my-4">
+              Select Income tax report to get perfect elements, schedule and
+              rules as per ITR.
+            </p>
+            <div
+              class="grid grid-cols-2 md:grid-cols-3 gap-x-6 md:gap-x-8 lg:gap-x-16 xl:gap-x-24 2xl:gap-x-32 gap-y-6"
+            >
+              <div
+                class="button-service border rounded p-2 bg-white text-center text-[10px] md:text-[16px]"
+                onclick="serviceButton(event)"
+              >
+                Update Elements
+              </div>
+              <div
+                class="button-service border rounded p-2 bg-white text-center text-[10px] md:text-[16px]"
+                onclick="serviceButton(event)"
+              >
+                Generate Utility
+              </div>
+              <div
+                class="button-service border rounded p-2 bg-white text-center text-[10px] md:text-[16px]"
+                onclick="serviceButton(event)"
+              >
+                Incremental Build
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <button class="flex border rounded px-1 text-[10px] md:text-[16px]" onclick="nextButtonClicked()">
+          <span>Next</span
+          ><img src="../assets/images/nextArrow.svg" class="self-center" />
+        </button>
+      </div>
+    </div>
+  </body>
+  <script src="../assets/js/welcome.js"></script>
+</html>
+{{end}}

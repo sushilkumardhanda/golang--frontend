@@ -1,0 +1,245 @@
+{{ define "editSchedule"}}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lexium | Home</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/3024-day.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="mt-4 mx-6">
+      {{template "topBar"}}
+      <div id="field-b" class="">
+        <div class="flex justify-between mt-4">
+          <div class="flex gap-4 whitespace-nowrap">
+            <img
+              src="../assets/images/arrow_left_circle_line.svg"
+              class="w-[55%] h-[55%] self-center"
+              alt="ArrowLeft"
+            />
+            <div class="text-xl self-center font-semibold">Field B</div>
+          </div>
+          <div class="flex gap-4">
+            <button class="text-white bg-[#3464c5] rounded px-6 py-2">
+              Save
+            </button>
+            <button class="text-[#3464c5] bg-white border rounded px-6 py-2">
+              Cancel
+            </button>
+          </div>
+        </div>
+        <div class="flex gap-4 mt-4">
+          <div class="w-[40%] flex flex-col gap-4">
+            <div class="border rounded-lg p-4 shadow-lg">
+              <div class="font-semibold">General</div>
+              <div class="p-4 flex gap-4">
+                <div class="flex flex-col gap-4 w-full">
+                  <div class="flex justify-between">
+                    <div class="p-1">Element ID</div>
+                    <input
+                      type="text"
+                      class="p-1 border rounded"
+                      value="{{.element.ElementID}}"
+                    />
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="p-1">Field Name</div>
+                    <input
+                      type="text"
+                      class="p-1 border rounded"
+                      value="{{.element.FieldName}}"
+                    />
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="p-1">Alias</div>
+                    <input type="text" class="p-1 border rounded" />
+                  </div>
+                  <div class="flex justify-between">
+                    <div class="p-1">Data Type</div>
+                    <input
+                      type="text"
+                      class="p-1 border rounded"
+                      value="{{.element.DataType}}"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="border rounded-lg p-4 shadow-lg">
+              <div class="p-1 flex justify-between">
+                <div>Warning Message</div>
+                <img
+                  src="../assets/images/expansionPopup.svg"
+                  alt="Expansion Popup"
+                  class="w-5 h-5"
+                />
+              </div>
+              <div>
+                <textarea class="border rounded w-full">
+                    {{.element.WarningMessages}} 
+                </textarea>
+              </div>
+              <div class="p-1 flex justify-between">
+                <div>Error Message</div>
+                <img
+                  src="../assets/images/expansionPopup.svg"
+                  alt="Expansion Popup"
+                  class="w-5 h-5"
+                />
+              </div>
+              <div>
+                <textarea class="border rounded w-full">
+                  {{.element.ErrorMessage}}
+                </textarea>
+              </div>
+              <div class="p-1 flex justify-between">
+                <div>Note Comments</div>
+                <img
+                  src="../assets/images/expansionPopup.svg"
+                  alt="Expansion Popup"
+                  class="w-5 h-5"
+                />
+              </div>
+              <div>
+                <textarea class="border rounded w-full">
+                {{.element.NoteComments}}
+                </textarea>
+              </div>
+            </div>
+          </div>
+          <div class="w-[60%] flex flex-col gap-4">
+            <div class="border rounded-lg p-4 shadow-lg">
+              <div class="flex justify-between">
+                <div class="font-semibold">Formula</div>
+                <div id="edit-formula">
+                  <button
+                    onclick="editButtonClickFormula()"
+                    class="text-white bg-[#3464c5] rounded px-6 py-1"
+                  >
+                    Edit
+                  </button>
+                </div>
+                <div id="saveCancel-formula" class="hidden">
+                  <button
+                    onclick="saveButtonClickFormula()"
+                    class="text-white bg-[#3464c5] rounded px-6 py-1"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onclick="cancelButtonClickFormula()"
+                    class="text-[#3464c5] bg-white border rounded px-6 py-1"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+              <div class="mt-4">
+                <textarea id="code-editor-formula" name="code-editor-formula">
+                  {{.element.Formula}}
+                </textarea>
+              </div>
+            </div>
+            <div class="border rounded-lg p-4 shadow-lg">
+              <div class="flex justify-between">
+                <div class="font-semibold">Change Validation</div>
+                <div id="edit-change">
+                  <button
+                    onclick="editButtonClickChange()"
+                    class="text-white bg-[#3464c5] rounded px-6 py-1"
+                  >
+                    Edit
+                  </button>
+                </div>
+                <div id="saveCancel-change" class="hidden">
+                  <button
+                    onclick="saveButtonClickChange()"
+                    class="text-white bg-[#3464c5] rounded px-6 py-1"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onclick="cancelButtonClickChange()"
+                    class="text-[#3464c5] bg-white border rounded px-6 py-1"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+              <div class="mt-4">
+                <textarea id="code-editor-change" name="code-editor-change">
+                    {{.element.ChangeValidation}}
+                </textarea>
+              </div>
+            </div>
+            <div class="border rounded-lg p-4 shadow-lg">
+              <div class="flex justify-between">
+                <div class="font-semibold">Save Validation</div>
+                <div id="edit-save">
+                  <button
+                    onclick="editButtonClickSave()"
+                    class="text-white bg-[#3464c5] rounded px-6 py-1"
+                  >
+                    Edit
+                  </button>
+                </div>
+                <div id="saveCancel-save" class="hidden">
+                  <button
+                    onclick="saveButtonClickSave()"
+                    class="text-white bg-[#3464c5] rounded px-6 py-1"
+                  >
+                    Save
+                  </button>
+                  <button
+                    onclick="cancelButtonClickSave()"
+                    class="text-[#3464c5] bg-white border rounded px-6 py-1"
+                  >
+                    Cancel
+                  </button>
+                </div>
+              </div>
+              <div class="mt-4">
+                <textarea id="code-editor-save" name="code-editor-save">
+                  {{.element.SaveValidation}}
+                </textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mt-8 mx-6">
+          <div
+            onclick="AdvanceSetting()"
+            class="font-semibold text-xl cursor-pointer"
+          >
+            Advance Setting
+          </div>
+        </div>
+      </div>
+
+      <div>{{template "contactFooter"}}</div>
+    </div>
+  </body>
+  <script
+    language="javascript"
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"
+  ></script>
+  <script
+    language="javascript"
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"
+  ></script>
+  <script src="../assets/js/editSchedule.js"></script>
+  <script src="../assets/js/topBar.js"></script>
+</html>
+{{end}}

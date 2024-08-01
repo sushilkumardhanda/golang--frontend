@@ -1,0 +1,209 @@
+{{define "advanceSetting"}}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lexium | Home</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/3024-day.min.css"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div>{{template "topBar"}}</div>
+    <div class="mx-6">
+      <div class="flex justify-between mt-4">
+        <div
+          onclick="EditSchedule()"
+          class="flex cursor-pointer gap-4 whitespace-nowrap"
+        >
+          <img
+            src="../assets/images/arrow_left_circle_line.svg"
+            class="w-[100%] h-[100%] self-center"
+            alt="ArrowLeft"
+          />
+          <div class="text-xl self-center font-semibold">Advance Setting</div>
+        </div>
+      </div>
+      <div
+        class="border rounded-lg p-4 shadow-lg mt-4 flex gap-8 justify-between"
+      >
+        <div class="w-full">
+          <div>Min</div>
+          <input
+            type="text"
+            class="w-full border p-1 rounded"
+            value="{{.element.MinValue}}"
+          />
+        </div>
+        <div class="w-full">
+          <div>Max</div>
+          <input
+            type="text"
+            class="w-full border p-1 rounded"
+            value="{{.element.MaxValue}}"
+          />
+        </div>
+        <div class="w-full">
+          <div>Is Mandatory</div>
+          <input
+            type="text"
+            class="w-full border p-1 rounded"
+            value="{{.element.IsMandatory}}"
+          />
+        </div>
+        <div class="w-full">
+          <div>Is Editable</div>
+          <input
+            type="text"
+            class="w-full border p-1 rounded"
+            value="{{.element.IsEditable}}"
+          />
+        </div>
+        <div class="w-full">
+          <div>Is Available</div>
+          <input
+            type="text"
+            class="w-full border p-1 rounded"
+            value="{{.element.IsAvailable}}"
+          />
+        </div>
+      </div>
+      <div class="flex gap-4">
+        <div class="w-[40%] mt-4 flex flex-col gap-4">
+          <div class="border rounded-lg p-4 shadow-lg">
+            <div class="p-4 flex gap-4">
+              <div class="flex flex-col gap-4 w-full">
+                <div class="flex justify-between">
+                  <div class="p-1">Pattern</div>
+                  <input
+                    type="text"
+                    class="p-1 border rounded"
+                    value="{{.element.Pattern}}"
+                  />
+                </div>
+                <div class="flex justify-between">
+                  <div class="p-1">Prefill Tag</div>
+                  <input
+                    type="text"
+                    class="p-1 border rounded"
+                    value="{{.element.PrefillTag}}"
+                  />
+                </div>
+                <div class="flex justify-between">
+                  <div class="p-1">Field Type</div>
+                  <input
+                    type="text"
+                    class="p-1 border rounded"
+                    value="{{.element.FieldType}}"
+                  />
+                </div>
+                <div class="flex justify-between">
+                  <div class="p-1">Classes</div>
+                  <input
+                    type="text"
+                    class="p-1 border rounded"
+                    value="{{.element.Classes}}"
+                  />
+                </div>
+                <div class="flex justify-between">
+                  <div class="p-1">CSV</div>
+                  <input
+                    type="text"
+                    class="p-1 border rounded"
+                    value="{{.element.CSV}}"
+                  />
+                </div>
+                <div class="flex justify-between">
+                  <div class="p-1">Formula Type</div>
+                  <input
+                    type="text"
+                    class="p-1 border rounded"
+                    value="{{.element.FormulaType}}"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="border rounded-lg p-4 shadow-lg">
+            <div class="p-1">Mandatory/Min/Max/Pattern/Enum Error</div>
+            <div>
+              <textarea class="border rounded w-full">
+                {{.element.MandatoryMinMaxPatternEnumError}}
+              </textarea>
+            </div>
+          </div>
+        </div>
+        <div class="w-[60%] flex flex-col gap-4 mt-4">
+          <div class="border rounded-lg p-4 shadow-lg">
+            <div class="flex justify-between">
+              <div>Enum Table</div>
+              <div class="">
+                <button class="text-white bg-[#3464c5] rounded px-6 py-1">
+                  Edit
+                </button>
+              </div>
+              <div class="hidden">
+                <button class="border rounded px-6 py-1">Add</button>
+                <button class="text-white bg-[#3464c5] rounded px-6 py-1">
+                  Save
+                </button>
+                <button class="text-white bg-[#ba1b2e] rounded px-6 py-1">
+                  Cancel
+                </button>
+              </div>
+            </div>
+            <div class="flex justify-between bg-[#f9fafd] mt-4">
+              <div class="w-full text-center border p-1">SI No.</div>
+              <div class="w-full text-center border p-1">Key</div>
+              <div class="w-full text-center border p-1">Value</div>
+              <div class="w-full text-center border p-1">Action</div>
+            </div>
+            <div class="flex justify-between">
+              <div class="w-full text-center border p-1">1</div>
+              <div class="w-full text-center border p-1">1</div>
+              <div class="w-full text-center border p-1">1</div>
+              <div class="w-full text-center border p-1">Edit</div>
+            </div>
+          </div>
+          <div class="border rounded-lg p-4 shadow-lg">
+            <div class="flex justify-between">
+              <div>Enum Condition</div>
+              <div>
+                <button class="text-white bg-[#3464c5] rounded px-6 py-1">
+                  Edit
+                </button>
+              </div>
+            </div>
+            <div class="mt-4">
+              <textarea id="enum-condition" name="enum-condition">
+                {{.element.EnumCondition}}
+              </textarea>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>{{template "contactFooter"}}</div>
+  </body>
+  <script
+    language="javascript"
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"
+  ></script>
+  <script
+    language="javascript"
+    type="text/javascript"
+    src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/perl/perl.min.js"
+  ></script>
+  <script src="../assets/js/advanceSetting.js"></script>
+  <script src="../assets/js/topBar.js"></script>
+</html>
+{{end}}

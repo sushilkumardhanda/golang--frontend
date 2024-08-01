@@ -1,0 +1,32 @@
+{{define "home"}}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lexium | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body> 
+    <div class="bg-gray-100 flex items-center justify-center min-h-screen">
+      <div ><button class="bg-blue-600 text-white px-6 py-2 rounded-lg absolute top-0 right-0" id="logout">Logout<button></button></div>
+      <div class="bg-white p-6 rounded-lg shadow-lg max-w-md w-full">
+        <div class="mb-4">
+          <strong class="block text-gray-700">ID:</strong>
+          <span id="data-id" class="text-gray-900">{{.data.ID}}</span>
+        </div>
+        <div class="mb-4">
+          <strong class="block text-gray-700">Username:</strong>
+          <span id="data-username" class="text-gray-900"
+            >{{.data.Username}}</span
+          >
+        </div>
+        <div class="mb-4">
+          <strong class="block text-gray-700">Role:</strong>
+          <span id="data-role" class="text-gray-900">{{.data.Role}}</span>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="../assets/js/home.js"></script>
+</html>
+{{end}}

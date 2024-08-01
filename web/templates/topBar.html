@@ -1,0 +1,101 @@
+{{define "topBar"}}
+<div class="flex flex-col md:flex-row justify-between">
+  <div>
+    <img src="../assets/images/Icon.svg" class="w-fit" alt="Logo image" />
+  </div>
+  <div class="flex gap-4 self-end md:self-center">
+    <div class="border-r pr-4 self-center">
+      <button class="border rounded px-2" onclick="ToggleChangeService()">
+        Change Services
+      </button>
+    </div>
+    <div>
+      <div class="flex hover:cursor-pointer" onclick="ToggleLogout()">
+        <img
+          src="../assets/images/DisplayPicture.svg"
+          class="w-fit"
+          alt="Logo image"
+        />
+        <div class="text-[12px] text-[#324054] self-center">Michael Smith</div>
+        <img
+          src="../assets/images/ArrowDown.svg"
+          class="w-fit self-center"
+          alt="Arrow Down"
+        />
+      </div>
+      <div id="logout-dropdown" class="hidden absolute">
+        <div
+          class="flex border bg-white rounded-lg pl-2 pr-12 py-1 shadow-xl mt-2 cursor-pointer"
+          onclick="logout()"
+        >
+          <img
+            src="../assets/images/logout.svg"
+            class="w-fit self-center mr-2"
+            alt="Logout"
+          />
+          <div>Logout</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<section class="change-service">
+  <div
+    id="modal-box"
+    class="fixed z-50 top-1/2 left-1/2 flex justify-center items-center transform -translate-x-1/2 -translate-y-1/2 w-full backdrop-blur h-full hidden"
+  >
+    <div class="w-full mx-4 border rounded-lg shadow-lg max-w-xl bg-white">
+      <div class="m-4 font-semibold">Change Services</div>
+      <div
+        class="bg-[#f7f8fa] border-t border-b p-4 flex flex-col text-[#464f60]"
+      >
+        <div class="m-4 flex flex-col">
+          <label for="itr"
+            >Select ITR<span class="text-[#6864dd]">*</span></label
+          >
+          <select name="ITR" id="itr" class="border p-2 rounded-lg">
+            <option value="ITR 1">ITR 1</option>
+            <option value="ITR 1">ITR 2</option>
+            <option value="ITR 1">ITR 3</option>
+            <option value="ITR 1">ITR 4</option>
+            <option value="ITR 1">ITR 5</option>
+            <option value="ITR 1">ITR 6</option>
+            <option value="ITR 1">ITR 7</option>
+          </select>
+        </div>
+        <div class="m-4 flex flex-col">
+          <label for="schema"
+            >Select Schema<span class="text-[#6864dd]">*</span>
+          </label>
+          <select name="Schema" id="schema" class="border p-2 rounded-lg">
+            <option value="ITR 1">ITR 1</option>
+          </select>
+        </div>
+        <div class="m-4 flex flex-col">
+          <label for="service"
+            >Select Service<span class="text-[#6864dd]">*</span></label
+          >
+          <select name="Service" id="service" class="border p-2 rounded-lg">
+            <option value="ITR 1">Update Elements</option>
+            <option value="ITR 1">Generate Utility</option>
+            <option value="ITR 1">Incremental Build</option>
+          </select>
+        </div>
+      </div>
+      <div class="flex justify-end">
+        <button
+          id="okay"
+          class="bg-[#d1293d] text-white rounded px-2 py-1 m-4"
+          onclick="ToggleChangeService()"
+        >
+          Close
+        </button>
+        <button id="cancel" class="border rounded px-2 py-1 m-4">
+          Change Service
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+{{end}}

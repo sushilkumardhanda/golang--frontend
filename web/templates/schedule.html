@@ -1,0 +1,218 @@
+{{define "schedule"}}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lexium | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="mx-6 mt-4">
+      <section class="topBar">{{template "topBar"}}</section>
+      <section class="search-bar">{{template "searchBar"}}</section>
+      <section class="elements-table-header">
+        <div class="mt-8 mx-[-20px] hidden sm:block">
+          <div
+            class="bg-[#EEF4FF] border-t border-b border-gray-300 flex justify-around p-2"
+          >
+            <div
+              class="font-semibold border-r border-gray-300 w-full text-center"
+            >
+              Element
+            </div>
+            <div
+              class="font-semibold border-r border-gray-300 w-full text-center"
+            >
+              Field Name
+            </div>
+            <div
+              class="font-semibold border-r border-gray-300 w-full text-center"
+            >
+              Alias
+            </div>
+            <div
+              class="font-semibold border-r border-gray-300 w-full text-center"
+            >
+              Field Type
+            </div>
+            <div class="w-1/4 text-center"></div>
+          </div>
+        </div>
+      </section>
+      <section class="elements-table-content">
+        <div
+          class="mx-[-20px] text-sm hidden sm:block"
+          id="table-content-large"
+        >
+          {{range .tree.children}}
+          <div class="border-b border-gray-300 flex justify-around p-2">
+            <div class="border-r border-gray-300 w-full text-center">
+              {{.nodeData.ElementID}}
+            </div>
+            <div class="border-r border-gray-300 w-full text-center">
+              {{.nodeData.FieldName}}
+            </div>
+            <div class="border-r border-gray-300 w-full text-center">Alias</div>
+            <div class="border-r border-gray-300 w-full text-center">
+              {{.nodeData.FieldType}}
+            </div>
+            <div class="w-1/4 text-center">
+              <div>
+                <img
+                  src="../assets/images/More.svg"
+                  class="w-fit self-center ml-6 cursor-pointer image-edit-view"
+                  alt="More"
+                  onclick="ToggleView(event,'{{.nodeData.ElementID}}-dropdown')"
+                />
+              </div>
+              <div
+                id="{{.nodeData.ElementID}}-dropdown"
+                class="absolute hidden dropdown-edit-view"
+              >
+                <div class="rounded-lg bg-white z-100 shadow-lg">
+                  <div
+                    onclick="ViewSchedule('{{.nodeData.ElementID}}')"
+                    class="cursor-pointer hover:bg-[#EEF4FF] pl-2 pr-12 py-1"
+                  >
+                    View
+                  </div>
+                  <div
+                    onclick="EditSchedule('{{.nodeData.ElementID}}')"
+                    class="cursor-pointer hover:bg-[#EEF4FF] pl-2 pr-12 py-1"
+                  >
+                    Edit
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {{end}}
+        </div>
+      </section>
+      <div class="overflow-auto">
+        <div class="w-[640px]">
+          <section class="elements-table-header-small">
+            <div class="mt-8 mx-[-20px] sm:hidden">
+              <div
+                class="bg-[#EEF4FF] border-t border-b border-gray-300 flex justify-around p-2"
+              >
+                <div
+                  class="font-semibold border-r border-gray-300 w-full text-center"
+                >
+                  Element
+                </div>
+                <div
+                  class="font-semibold border-r border-gray-300 w-full text-center"
+                >
+                  Field Name
+                </div>
+                <div
+                  class="font-semibold border-r border-gray-300 w-full text-center"
+                >
+                  Alias
+                </div>
+                <div
+                  class="font-semibold border-r border-gray-300 w-full text-center"
+                >
+                  Field Type
+                </div>
+                <div class="w-full font-semibold text-center">Action</div>
+              </div>
+            </div>
+          </section>
+          <section class="elements-table-content-small">
+            <div class="mx-[-20px] text-sm sm:hidden" id="table-content-small">
+              {{range .tree.children}}
+              <div class="border-b border-gray-300 flex justify-around p-2">
+                <div class="border-r border-gray-300 w-full text-center">
+                  {{.nodeData.ElementID}}
+                </div>
+                <div class="border-r border-gray-300 w-full text-center">
+                  {{.nodeData.FieldName}}
+                </div>
+                <div class="border-r border-gray-300 w-full text-center">
+                  Alias
+                </div>
+                <div class="border-r border-gray-300 w-full text-center">
+                  {{.nodeData.FieldType}}
+                </div>
+                <div class="w-full text-center flex justify-center">
+                  <div
+                    class="flex px-2"
+                    onclick="ViewSchedule('{{.nodeData.ElementID}}')"
+                  >
+                    <img
+                      src="../assets/images/eye_2_fill.svg"
+                      class="w-[20px] h-[20px]"
+                      alt="Eye image"
+                    />
+                    <div>View</div>
+                  </div>
+                  <div
+                    class="flex px-2"
+                    onclick="EditSchedule('{{.nodeData.ElementID}}')"
+                  >
+                    <img
+                      src="../assets/images/Frame.svg"
+                      class="w-[20px] h-[20px]"
+                      alt="Edit File"
+                    />
+                    <div>Edit</div>
+                  </div>
+                </div>
+              </div>
+              {{end}}
+            </div>
+          </section>
+        </div>
+      </div>
+      <section class="pagination-footer">
+        <div class="flex text-[8px] md:text-[12px] justify-between mt-2">
+          <div id="fromToElements"></div>
+          <div class="flex">
+            <div class="flex mx-4">
+              <div>Rows per page:</div>
+              <select
+                name="row-per-page"
+                class="mx-1"
+                onchange="ElementsPerPageChange(this.value)"
+              >
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+                <option value="20">20</option>
+              </select>
+            </div>
+            <div class="flex mx-4">
+              <div>Jump to:</div>
+              <input
+                type="text"
+                name="jump-to-page"
+                value="1"
+                class="mx-1 w-4"
+                onchange="JumpToPage(this.value)"
+              />
+            </div>
+            <div class="flex">
+              <div class="border rounded-lg" onclick="previousPage()">
+                <img
+                  src="../assets/images/leftArrow.svg"
+                  class="w-fit self-center"
+                />
+              </div>
+              <div id="pageTotalPage"></div>
+              <div class="border rounded-lg" onclick="nextPage()">
+                <img src="../assets/images/rightArrow.svg" class="w-fit" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="contact-footer">{{template "contactFooter"}}</section>
+    </div>
+  </body>
+  <script src="../assets/js/schedule.js"></script>
+  <script src="../assets/js/searchBar.js"></script>
+  <script src="../assets/js/topBar.js"></script>
+</html>
+{{end}}

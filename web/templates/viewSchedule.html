@@ -1,0 +1,404 @@
+{{define "viewSchedule"}}
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lexium | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body>
+    <div class="mt-4 mx-6">
+      {{template "topBar"}} {{template "searchBar"}}
+      <div class="mt-4 flex flex-col gap-4">
+        {{ range .node.Children }}
+        <div class="flex border rounded-lg p-2 flex-col">
+          <div onclick="ToggleView('{{.NodeData.ElementID}}')">
+            <div class="font-semibold">{{.NodeData.ElementID}}</div>
+            <div class="flex justify-around">
+              <div class="w-full flex flex-col gap-4 text-center">
+                <div class="font-semibold border-r">File Name</div>
+                <div class="border-r">PersonalInfo</div>
+              </div>
+
+              <div class="w-full flex flex-col gap-4 text-center">
+                <div class="font-semibold border-r">Data Type</div>
+                <div class="border-r">Schedule DF</div>
+              </div>
+
+              <div class="w-full flex flex-col gap-4 text-center">
+                <div class="font-semibold border-r">Alias</div>
+                <div class="border-r">PAN-D</div>
+              </div>
+
+              <div class="w-1/2 flex flex-col gap-4 text-center">
+                <div class="font-semibold border-r">Rule No.</div>
+                <div class="border-r">12</div>
+              </div>
+
+              <div class="w-1/2 flex flex-col gap-4 text-center">
+                <div class="font-semibold">Action</div>
+                <div
+                  class="flex cursor-pointer items-center justify-center"
+                  onclick="EditSchedule('{{.NodeData.ElementID}}', event)"
+                >
+                  <img
+                    src="../assets/images/edit_fill.svg"
+                    class="w-fit"
+                    alt="Edit"
+                  />
+                  <div>Edit</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div id="{{.NodeData.ElementID}}" class="hidden">
+            {{ range .Children }}
+            <div class="flex border m-4 rounded-lg p-2 flex-col">
+              <div onclick="ToggleView('{{.NodeData.ElementID}}')">
+                <div class="font-semibold">{{.NodeData.ElementID}}</div>
+                <div class="flex justify-around">
+                  <div class="w-full flex flex-col gap-4 text-center">
+                    <div class="font-semibold border-r">File Name</div>
+                    <div class="border-r">PersonalInfo</div>
+                  </div>
+
+                  <div class="w-full flex flex-col gap-4 text-center">
+                    <div class="font-semibold border-r">Data Type</div>
+                    <div class="border-r">Schedule DF</div>
+                  </div>
+
+                  <div class="w-full flex flex-col gap-4 text-center">
+                    <div class="font-semibold border-r">Alias</div>
+                    <div class="border-r">PAN-D</div>
+                  </div>
+
+                  <div class="w-1/2 flex flex-col gap-4 text-center">
+                    <div class="font-semibold border-r">Rule No.</div>
+                    <div class="border-r">12</div>
+                  </div>
+
+                  <div class="w-1/2 flex flex-col gap-4 text-center">
+                    <div class="font-semibold">Action</div>
+                    <div
+                      class="flex cursor-pointer items-center justify-center"
+                      onclick="EditSchedule('{{.NodeData.ElementID}}',event)"
+                    >
+                      <img
+                        src="../assets/images/edit_fill.svg"
+                        class="w-fit"
+                        alt="Edit"
+                      />
+                      <div>Edit</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="{{.NodeData.ElementID}}" class="hidden">
+                {{ range .Children }}
+                <div class="flex border m-4 rounded-lg p-2 flex-col">
+                  <div onclick="ToggleView('{{.NodeData.ElementID}}')">
+                    <div class="font-semibold">{{.NodeData.ElementID}}</div>
+                    <div class="flex justify-around">
+                      <div class="w-full flex flex-col gap-4 text-center">
+                        <div class="font-semibold border-r">File Name</div>
+                        <div class="border-r">PersonalInfo</div>
+                      </div>
+
+                      <div class="w-full flex flex-col gap-4 text-center">
+                        <div class="font-semibold border-r">Data Type</div>
+                        <div class="border-r">Schedule DF</div>
+                      </div>
+
+                      <div class="w-full flex flex-col gap-4 text-center">
+                        <div class="font-semibold border-r">Alias</div>
+                        <div class="border-r">PAN-D</div>
+                      </div>
+
+                      <div class="w-1/2 flex flex-col gap-4 text-center">
+                        <div class="font-semibold border-r">Rule No.</div>
+                        <div class="border-r">12</div>
+                      </div>
+
+                      <div class="w-1/2 flex flex-col gap-4 text-center">
+                        <div class="font-semibold">Action</div>
+                        <div
+                          class="flex cursor-pointer items-center justify-center"
+                          onclick="EditSchedule('{{.NodeData.ElementID}}',event)"
+                        >
+                          <img
+                            src="../assets/images/edit_fill.svg"
+                            class="w-fit"
+                            alt="Edit"
+                          />
+                          <div>Edit</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div id="{{.NodeData.ElementID}}" class="hidden">
+                    {{ range .Children }}
+                    <div class="flex border m-4 rounded-lg p-2 flex-col">
+                      <div onclick="ToggleView('{{.NodeData.ElementID}}')">
+                        <div class="font-semibold">{{.NodeData.ElementID}}</div>
+                        <div class="flex justify-around">
+                          <div class="w-full flex flex-col gap-4 text-center">
+                            <div class="font-semibold border-r">File Name</div>
+                            <div class="border-r">PersonalInfo</div>
+                          </div>
+
+                          <div class="w-full flex flex-col gap-4 text-center">
+                            <div class="font-semibold border-r">Data Type</div>
+                            <div class="border-r">Schedule DF</div>
+                          </div>
+
+                          <div class="w-full flex flex-col gap-4 text-center">
+                            <div class="font-semibold border-r">Alias</div>
+                            <div class="border-r">PAN-D</div>
+                          </div>
+
+                          <div class="w-1/2 flex flex-col gap-4 text-center">
+                            <div class="font-semibold border-r">Rule No.</div>
+                            <div class="border-r">12</div>
+                          </div>
+
+                          <div class="w-1/2 flex flex-col gap-4 text-center">
+                            <div class="font-semibold">Action</div>
+                            <div
+                              class="flex cursor-pointer items-center justify-center"
+                              onclick="EditSchedule('{{.NodeData.ElementID}}',event)"
+                            >
+                              <img
+                                src="../assets/images/edit_fill.svg"
+                                class="w-fit"
+                                alt="Edit"
+                              />
+                              <div>Edit</div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div id="{{.NodeData.ElementID}}" class="hidden">
+                        {{ range .Children }}
+                        <div class="flex border m-4 rounded-lg p-2 flex-col">
+                          <div onclick="ToggleView('{{.NodeData.ElementID}}')">
+                            <div class="font-semibold">
+                              {{.NodeData.ElementID}}
+                            </div>
+                            <div class="flex justify-around">
+                              <div
+                                class="w-full flex flex-col gap-4 text-center"
+                              >
+                                <div class="font-semibold border-r">
+                                  File Name
+                                </div>
+                                <div class="border-r">PersonalInfo</div>
+                              </div>
+
+                              <div
+                                class="w-full flex flex-col gap-4 text-center"
+                              >
+                                <div class="font-semibold border-r">
+                                  Data Type
+                                </div>
+                                <div class="border-r">Schedule DF</div>
+                              </div>
+
+                              <div
+                                class="w-full flex flex-col gap-4 text-center"
+                              >
+                                <div class="font-semibold border-r">Alias</div>
+                                <div class="border-r">PAN-D</div>
+                              </div>
+
+                              <div
+                                class="w-1/2 flex flex-col gap-4 text-center"
+                              >
+                                <div class="font-semibold border-r">
+                                  Rule No.
+                                </div>
+                                <div class="border-r">12</div>
+                              </div>
+
+                              <div
+                                class="w-1/2 flex flex-col gap-4 text-center"
+                              >
+                                <div class="font-semibold">Action</div>
+                                <div
+                                  class="flex cursor-pointer items-center justify-center"
+                                  onclick="EditSchedule('{{.NodeData.ElementID}}',event)"
+                                >
+                                  <img
+                                    src="../assets/images/edit_fill.svg"
+                                    class="w-fit"
+                                    alt="Edit"
+                                  />
+                                  <div>Edit</div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div id="{{.NodeData.ElementID}}" class="hidden">
+                            {{ range .Children }}
+                            <div
+                              class="flex border m-4 rounded-lg p-2 flex-col"
+                            >
+                              <div
+                                onclick="ToggleView('{{.NodeData.ElementID}}')"
+                              >
+                                <div class="font-semibold">
+                                  {{.NodeData.ElementID}}
+                                </div>
+                                <div class="flex justify-around">
+                                  <div
+                                    class="w-full flex flex-col gap-4 text-center"
+                                  >
+                                    <div class="font-semibold border-r">
+                                      File Name
+                                    </div>
+                                    <div class="border-r">PersonalInfo</div>
+                                  </div>
+
+                                  <div
+                                    class="w-full flex flex-col gap-4 text-center"
+                                  >
+                                    <div class="font-semibold border-r">
+                                      Data Type
+                                    </div>
+                                    <div class="border-r">Schedule DF</div>
+                                  </div>
+
+                                  <div
+                                    class="w-full flex flex-col gap-4 text-center"
+                                  >
+                                    <div class="font-semibold border-r">
+                                      Alias
+                                    </div>
+                                    <div class="border-r">PAN-D</div>
+                                  </div>
+
+                                  <div
+                                    class="w-1/2 flex flex-col gap-4 text-center"
+                                  >
+                                    <div class="font-semibold border-r">
+                                      Rule No.
+                                    </div>
+                                    <div class="border-r">12</div>
+                                  </div>
+
+                                  <div
+                                    class="w-1/2 flex flex-col gap-4 text-center"
+                                  >
+                                    <div class="font-semibold">Action</div>
+                                    <div
+                                      class="flex cursor-pointer items-center justify-center"
+                                      onclick="EditSchedule('{{.NodeData.ElementID}}',event)"
+                                    >
+                                      <img
+                                        src="../assets/images/edit_fill.svg"
+                                        class="w-fit"
+                                        alt="Edit"
+                                      />
+                                      <div>Edit</div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div id="{{.NodeData.ElementID}}" class="hidden">
+                                {{ range .Children }}
+                                <div
+                                  class="flex border m-4 rounded-lg p-2 flex-col"
+                                >
+                                  <div
+                                    onclick="ToggleView('{{.NodeData.ElementID}}')"
+                                  >
+                                    <div class="font-semibold">
+                                      {{.NodeData.ElementID}}
+                                    </div>
+                                    <div class="flex justify-around">
+                                      <div
+                                        class="w-full flex flex-col gap-4 text-center"
+                                      >
+                                        <div class="font-semibold border-r">
+                                          File Name
+                                        </div>
+                                        <div class="border-r">PersonalInfo</div>
+                                      </div>
+
+                                      <div
+                                        class="w-full flex flex-col gap-4 text-center"
+                                      >
+                                        <div class="font-semibold border-r">
+                                          Data Type
+                                        </div>
+                                        <div class="border-r">Schedule DF</div>
+                                      </div>
+
+                                      <div
+                                        class="w-full flex flex-col gap-4 text-center"
+                                      >
+                                        <div class="font-semibold border-r">
+                                          Alias
+                                        </div>
+                                        <div class="border-r">PAN-D</div>
+                                      </div>
+
+                                      <div
+                                        class="w-1/2 flex flex-col gap-4 text-center"
+                                      >
+                                        <div class="font-semibold border-r">
+                                          Rule No.
+                                        </div>
+                                        <div class="border-r">12</div>
+                                      </div>
+
+                                      <div
+                                        class="w-1/2 flex flex-col gap-4 text-center"
+                                      >
+                                        <div class="font-semibold">Action</div>
+                                        <div
+                                          class="flex cursor-pointer items-center justify-center"
+                                          onclick="EditSchedule('{{.NodeData.ElementID}}',event)"
+                                        >
+                                          <img
+                                            src="../assets/images/edit_fill.svg"
+                                            class="w-fit"
+                                            alt="Edit"
+                                          />
+                                          <div>Edit</div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div
+                                    id="{{.NodeData.ElementID}}"
+                                    class="hidden"
+                                  >
+                                    {{ range .Children }} {{end}}
+                                  </div>
+                                </div>
+                                {{end}}
+                              </div>
+                            </div>
+                            {{end}}
+                          </div>
+                        </div>
+                        {{end}}
+                      </div>
+                    </div>
+                    {{end}}
+                  </div>
+                </div>
+                {{end}}
+              </div>
+            </div>
+            {{end}}
+          </div>
+        </div>
+        {{ end }}
+      </div>
+    </div>
+  </body>
+  <script src="../assets/js/topBar.js"></script>
+  <script src="../assets/js/viewSchedule.js"></script>
+</html>
+{{end}}
